@@ -2,7 +2,6 @@ package org.iesfm.airline.dao;
 
 import org.iesfm.airline.entity.Flight;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.LinkedList;
