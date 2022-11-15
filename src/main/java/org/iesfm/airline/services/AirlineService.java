@@ -1,7 +1,10 @@
 package org.iesfm.airline.services;
 
 import org.iesfm.airline.dao.FlightDAO;
+import org.iesfm.airline.dao.PassengerDAO;
 import org.iesfm.airline.entity.Flight;
+import org.iesfm.airline.entity.Passenger;
+import org.iesfm.airline.exception.FlightNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +14,8 @@ import java.util.List;
 public class AirlineService {
     @Autowired
     private FlightDAO flightDAO;
+    @Autowired
+    private PassengerDAO passengerDAO;
 
     public List<Flight> list() {
         return flightDAO.list();
@@ -26,5 +31,26 @@ public class AirlineService {
 
     public boolean deleteFlight(int flightId) {
         return flightDAO.deleteFlight(flightId);
+    }
+
+    public List<Passenger> listPassengersFromFlight(int flightId) throws FlightNotFoundException {
+        if (flightDAO.getFlight(flightId) != null ){
+
+            return passengerDAO.listPassengers(flightId);
+        }
+        else {
+            throw new FlightNotFoundException(flightId);
+        }
+    }
+
+    public boolean addPassenger(Passenger passenger, int flightId) throws FlightNotFoundException {
+        if (flightDAO.getFlight(flightId) != null ){
+
+            return passengerDAO.addPassenger(flightId, passenger);
+        }
+        else {
+            throw new FlightNotFoundException(flightId);
+        }
+
     }
 }

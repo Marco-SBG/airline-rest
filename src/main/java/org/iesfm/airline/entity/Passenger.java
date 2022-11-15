@@ -15,8 +15,8 @@ import javax.validation.constraints.Positive;
 public class Passenger {
     @NotBlank
     private String nif;
-    @NotBlank
-    private String flightId;
+    @NotNull
+    private int flightId;
     @NotBlank
     private String name;
     @NotBlank
