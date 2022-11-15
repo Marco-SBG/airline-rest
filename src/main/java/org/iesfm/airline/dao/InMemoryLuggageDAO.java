@@ -1,12 +1,14 @@
 package org.iesfm.airline.dao;
 
 import org.iesfm.airline.entity.Luggage;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class InMemoryLuggageDAO implements LuggageDAO {
     private Map<Integer, Map<String, Map<Integer, Luggage>>> luggage = new HashMap<>();
 
